@@ -25,3 +25,21 @@ state_code <- read_csv("fipscodejoin.csv")
 join_state <- climate_state_year %>% left_join(state_code, by=c("fips"="fips_code"))
 ```
 
+```{r}
+join_state %>% filter(fips == "29") %>% arrange(desc(temp))
+```
+#The highest average temperature was in 2012, at 58.55 degees Fahrenheit and 14.75 degrees Celsius. However, after that the climate seems to vary considerably.
+
+```{r}
+model_state <- read_csv("model_state.csv")
+```
+
+```{r}
+model_state %>% filter(fips == "29")
+```
+#This says that the temperature change for the summer in Missouri is 0.01409524. It appears that this is in degrees Celsius, according to the documentation. Converted, this would be 32.0253714 degrees Fahrenheit. In addition, the maximum warming season is the winter, which is consistent with the information from scientists in the warming hole article.
+
+```{r}
+summer_min <- read_csv("summer_min.csv")
+```
+
