@@ -270,9 +270,29 @@ The following objects are masked from ‘package:stats’:
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>#There is 125 variables of every single code. These codes are 01, 04, 05, 06, 08, 09, 10, 12, 13, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 44, 45, 46, 47, 48, 49, 50, 51, 53, 54, 55, 56</p>
+<p>#In order to understand what the FIPS codes mean, I researched the documentation and pulled from the census website. <a href="https://www.census.gov/library/reference/code-lists/ansi.html" class="uri">https://www.census.gov/library/reference/code-lists/ansi.html</a></p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3RhdGVfY29kZSA8LSByZWFkX2NzdihcImZpcHNjb2Rlam9pbi5jc3ZcIilcbmBgYCJ9 -->
+<pre class="r"><code>state_code &lt;- read_csv(&quot;fipscodejoin.csv&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUm93czogNDggQ29sdW1uczogMlxuLS0gQ29sdW1uIHNwZWNpZmljYXRpb24gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuRGVsaW1pdGVyOiBcIixcIlxuY2hyICgyKTogZmlwc19jb2RlLCBhcmVhXG5cbmkgVXNlIGBzcGVjKClgIHRvIHJldHJpZXZlIHRoZSBmdWxsIGNvbHVtbiBzcGVjaWZpY2F0aW9uIGZvciB0aGlzIGRhdGEuXG5pIFNwZWNpZnkgdGhlIGNvbHVtbiB0eXBlcyBvciBzZXQgYHNob3dfY29sX3R5cGVzID0gRkFMU0VgIHRvIHF1aWV0IHRoaXMgbWVzc2FnZS5cbiJ9 -->
+<pre><code>Rows: 48 Columns: 2
+-- Column specification ----------------------------------
+Delimiter: &quot;,&quot;
+chr (2): fips_code, area
+
+i Use `spec()` to retrieve the full column specification for this data.
+i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuam9pbl9zdGF0ZSA8LSBjbGltYXRlX3N0YXRlX3llYXIgJT4lIGxlZnRfam9pbihzdGF0ZV9jb2RlLCBieT1jKFwiZmlwc1wiPVwiZmlwc19jb2RlXCIpKVxuYGBgIn0= -->
+<pre class="r"><code>join_state &lt;- climate_state_year %&gt;% left_join(state_code, by=c(&quot;fips&quot;=&quot;fips_code&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIldhcm1pbmcgSG9sZSAyIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KYGBge3J9DQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoamFuaXRvcikNCmBgYA0KDQpgYGB7cn0NCmNsaW1hdGVfc3RhdGVfeWVhciA8LSByZWFkX2NzdigiY2xpbWRpdl9zdGF0ZV95ZWFyLnR4dCIpDQpgYGANCg0KYGBge3J9DQpjbGltYXRlX3N0YXRlX3llYXIgJT4lIGNvdW50KGZpcHMpICU+JSANCiAgYXJyYW5nZShkZXNjKG4pKQ0KYGBgDQojVGhlcmUgaXMgMTI1IHZhcmlhYmxlcyBvZiBldmVyeSBzaW5nbGUgY29kZS4gVGhlc2UgY29kZXMgYXJlIDAxLCAwNCwgMDUsIDA2LCAwOCwgMDksIDEwLCAxMiwgMTMsIDE2LCAxNywgMTgsIDE5LCAyMCwgMjEsIDIyLCAyMywgMjQsIDI1LCAyNiwgMjcsIDI4LCAyOSwgMzAsIDMxLCAzMiwgMzMsIDM0LCAzNSwgMzYsIDM3LCAzOCwgMzksIDQwLCA0MSwgNDIsIDQ0LCA0NSwgNDYsIDQ3LCA0OCwgNDksIDUwLCA1MSwgNTMsIDU0LCA1NSwgNTYNCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIldhcm1pbmcgSG9sZSAyIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KYGBge3J9DQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoamFuaXRvcikNCmBgYA0KDQpgYGB7cn0NCmNsaW1hdGVfc3RhdGVfeWVhciA8LSByZWFkX2NzdigiY2xpbWRpdl9zdGF0ZV95ZWFyLnR4dCIpDQpgYGANCg0KYGBge3J9DQpjbGltYXRlX3N0YXRlX3llYXIgJT4lIGNvdW50KGZpcHMpICU+JSANCiAgYXJyYW5nZShkZXNjKG4pKQ0KYGBgDQojVGhlcmUgaXMgMTI1IHZhcmlhYmxlcyBvZiBldmVyeSBzaW5nbGUgY29kZS4gVGhlc2UgY29kZXMgYXJlIDAxLCAwNCwgMDUsIDA2LCAwOCwgMDksIDEwLCAxMiwgMTMsIDE2LCAxNywgMTgsIDE5LCAyMCwgMjEsIDIyLCAyMywgMjQsIDI1LCAyNiwgMjcsIDI4LCAyOSwgMzAsIDMxLCAzMiwgMzMsIDM0LCAzNSwgMzYsIDM3LCAzOCwgMzksIDQwLCA0MSwgNDIsIDQ0LCA0NSwgNDYsIDQ3LCA0OCwgNDksIDUwLCA1MSwgNTMsIDU0LCA1NSwgNTYNCg0KI0luIG9yZGVyIHRvIHVuZGVyc3RhbmQgd2hhdCB0aGUgRklQUyBjb2RlcyBtZWFuLCBJIHJlc2VhcmNoZWQgdGhlIGRvY3VtZW50YXRpb24gYW5kIHB1bGxlZCBmcm9tIHRoZSBjZW5zdXMgd2Vic2l0ZS4gaHR0cHM6Ly93d3cuY2Vuc3VzLmdvdi9saWJyYXJ5L3JlZmVyZW5jZS9jb2RlLWxpc3RzL2Fuc2kuaHRtbA0KDQpgYGB7cn0NCnN0YXRlX2NvZGUgPC0gcmVhZF9jc3YoImZpcHNjb2Rlam9pbi5jc3YiKQ0Kam9pbl9zdGF0ZSA8LSBjbGltYXRlX3N0YXRlX3llYXIgJT4lIGxlZnRfam9pbihzdGF0ZV9jb2RlLCBieT1jKCJmaXBzIj0iZmlwc19jb2RlIikpDQpgYGANCg0K</div>
 
 
 
