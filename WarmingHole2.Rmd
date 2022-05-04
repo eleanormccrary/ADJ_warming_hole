@@ -8,6 +8,7 @@ library(tidyverse)
 library(janitor)
 ```
 
+Data obtained from the Washington Post's data Github account. https://github.com/washingtonpost/data-2C-beyond-the-limit-usa/blob/main/data/processed/climdiv_state_year.csv
 ```{r}
 climate_state_year <- read_csv("climdiv_state_year.txt")
 ```
@@ -30,6 +31,7 @@ join_state %>% filter(fips == "29") %>% arrange(desc(temp))
 ```
 #The highest average temperature was in 2012, at 58.55 degees Fahrenheit and 14.75 degrees Celsius. However, after that the climate seems to vary considerably.
 
+#This data was obtained from the Washington Post's public Github account. https://github.com/washingtonpost/data-2C-beyond-the-limit-usa/blob/main/data/processed/model_state.csv
 ```{r}
 model_state <- read_csv("model_state.csv")
 ```
@@ -43,3 +45,36 @@ model_state %>% filter(fips == "29")
 summer_min <- read_csv("summer_min.csv")
 ```
 
+#Data obtained from the Climate at a Glance website.
+```{r}
+summer_min %>% arrange(desc(Value))
+```
+#It appears that for the two hottest summers, the average minimum temperature is 55.5 degrees Fahrenheit. This will work nicely in my story when explaining what a typical night would look like. However, it would be ideal if I could find a data set that outlined the minimum temperature for every single day of the summer.
+
+#Luckily, the NOAA allows you to submit data requests. This is all the temperature data from Missouri for May-July 2021.
+
+```{r}
+missouri_daily <- read_csv("missouri_daily.csv")
+```
+
+```{r}
+missouri_daily %>% filter(!is.na(TMIN))
+```
+#There are 12,965 rows where there is a value for the temperature minimum for the day. This is out of 47,092 of the original rows.
+
+```{r}
+missouri_daily %>% filter(!is.na(TMIN) & TMIN > "79")
+```
+
+#According to this data, there has been only eight days in the summer that have had daily minimums of over 80 degrees. This will be a great addition to the warming hole article. While it could be dangerous for plants and animals to experience this high of minimum heat, it has not occurred frequently. Furthermore, many of these take place at airports. The lack of trees may also be contributing to these high minimum temperatures. It could be worth it to inquire about people's health in cities versus rural area when it comes to high temperatures. This could also have an intersectional lense about the demographics who live in cities and experience this high level of heat.
+
+What was the hottest day in Columbia?
+
+```{r}
+columbia_dailies <- missouri_daily %>% filter(STATION == "USC00231801" | STATION == "USW00003945")
+```
+
+```{r}
+columbia_dailies %>% arrange(desc(TMIN))
+```
+#According to the data, the day with the hottest minimum temperature last summer was June 18th, where the minimum temperature was 78 degrees Fahrenheit.
